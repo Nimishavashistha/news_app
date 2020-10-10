@@ -45,16 +45,16 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Top",
+              "News",
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.red,
                 fontSize: 20,
               ),
             ),
             Text(
-              "Headlines",
+              "World",
               style: TextStyle(
-                color: Color(0xff5066c6),
+                color: Colors.black,
               ),
             )
           ],
@@ -90,6 +90,30 @@ class _HomeState extends State<Home> {
                           }),
                     ),
 
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            "Top",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            "Headlines",
+                            style: TextStyle(
+                              color: Color(0xff5066c6),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
 
                     ///Articles
                     Container(

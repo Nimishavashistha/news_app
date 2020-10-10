@@ -1,7 +1,9 @@
+import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/model/Article_model.dart';
 import 'package:news_app/ui/article_view.dart';
 import 'package:news_app/ui/news.dart';
+
 class CategoryViews extends StatefulWidget {
   final String category;
   const CategoryViews({Key key, this.category}) : super(key: key);
@@ -35,60 +37,61 @@ class _CategoryViewsState extends State<CategoryViews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "News",
-              style: TextStyle(
-                color: Colors.black,
-              ),
-            ),
-            Text(
-              "World",
-              style: TextStyle(
-                color: Colors.red,
-              ),
-            )
-          ],
-        ),
-        elevation: 0.0,
-        centerTitle: true,
-      ),
-
-      body: _loading
-          ? Center(
-        child: Container(
-          child: CircularProgressIndicator(),
-        ),
-      )
-      :SingleChildScrollView(
-        child: Container(
-          child: Column(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(top: 16),
-                child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: articles.length,
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return BlogTile(
-                        imageUrl: articles[index].urlToImage,
-                        title: articles[index].title,
-                        desc: articles[index].description,
-                        url: articles[index].url,
-                      );
-                    }),
+              Center(
+                child: Text(
+                  StringUtils.capitalize(widget.category),
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              Text(
+                "News",
+                style: TextStyle(
+                  color: Colors.red,
+                ),
               )
             ],
           ),
+          elevation: 0.0,
+          centerTitle: true,
         ),
-      ),
 
+        body: _loading
+            ? Center(
+          child: Container(
+            child: CircularProgressIndicator(),
+          ),
+        )
+        :SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(top: 16),
+                  child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: articles.length,
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return BlogTile(
+                          imageUrl: articles[index].urlToImage,
+                          title: articles[index].title,
+                          desc: articles[index].description,
+                          url: articles[index].url,
+                        );
+                      }),
+                )
+              ],
+            ),
+          ),
+        ),
     );
   }
 }
